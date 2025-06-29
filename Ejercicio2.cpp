@@ -17,6 +17,7 @@ Requisitos:
 */
 #include <iostream>
 #include <string>
+#include <locale.h>
 using namespace std;
 
 struct Producto {
@@ -38,14 +39,31 @@ int numVentas=0;
 
 void registrarProducto() {
     cout << "\n=== REGISTRAR PRODUCTO ===" << endl;
-    cout << "Nombre del producto: ";
+    string nombre;
+	cout << "Nombre del producto: ";
     cin.ignore();
-    getline(cin, productos[numProductos].nombre);
-    cout << "Precio del producto: ";
-    cin >> productos[numProductos].precio;
-    
-    numProductos++;
+    getline(cin, nombre);
+    bool existe = false;
+    for (int i = 0; i < numProductos; i++) {
+        if (productos[i].nombre == nombre) {
+            existe = true;
+            break;
+        }
+    }
+
+    if (existe == true) {
+        cout << "Error: Ya existe un producto con ese nombre." << endl;
+    } else {
+    	productos[numProductos].nombre = nombre;
+    	cout << "Precio del producto: ";
+    	cin >> productos[numProductos].precio;
+    	while (productos[numProductos].precio < 0) {
+    		cout << "Opcion incorrecta, ingrese un precio correcto: ";
+    		cin >> productos[numProductos].precio;
+		}
+	numProductos++;
     cout << "Producto registrado exitosamente!" << endl;
+	}
 }
 
 void listarProductos() {
@@ -102,9 +120,9 @@ void actualizarProducto() {
        		buscado = true;
        		break;
 	    }
-         if (buscado == false) {
-    	cout << "Contacto no encontrado." << endl;
-		}
+	}
+	if (buscado == false) {
+    cout << "Producto no encontrado." << endl;
 	}
 }
 
@@ -127,9 +145,9 @@ void eliminarProducto() {
         }
     }
    if (encontrado == true) {
-    	cout << "Contacto Eliminado" << endl;
+    	cout << "Producto Eliminado" << endl;
 	} else {
-    	cout << "Contacto no encontrado." << endl;
+    	cout << "Producto no encontrado." << endl;
 	}
 }
 
@@ -153,22 +171,28 @@ void registrarVenta() {
         }
     }
     
-    if (productoEncontrado = false) {
+    if (productoEncontrado == false) {
         cout << "Producto no encontrado en el inventario." << endl;
-    }
+    }else{
     
     ventas[numVentas].idVenta = contadorVentas++;
     ventas[numVentas].producto = nombreProducto;
     
     cout << "Cantidad vendida: ";
     cin >> ventas[numVentas].cantidad;
+    while (ventas[numVentas].cantidad <= 0) {
+    cout << "Cantidad inválida. Intente nuevamente: ";
+    cin >> ventas[numVentas].cantidad;
+}
     
     ventas[numVentas].precioTotal = precioProducto * ventas[numVentas].cantidad;
     
     numVentas++;
     cout << "Venta registrada exitosamente!" << endl;
     cout << "Total de la venta: " << ventas[numVentas-1].precioTotal << endl;
+    }
 }
+
 
 void listarVentas() {
     cout << "\n=== LISTADO DE VENTAS ===" << endl;
@@ -192,6 +216,7 @@ void totalVentas() {
 
 
 int main() {
+	setlocale(LC_CTYPE, "");
 	int salir = 0;
     do {
         cout << "\n=== INVENTARIO DE PRODUCTOS Y VENTAS ===" << endl;
