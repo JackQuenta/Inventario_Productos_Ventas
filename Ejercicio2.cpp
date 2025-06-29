@@ -32,7 +32,9 @@ struct Venta {
 };
 
 Producto productos[100];
+Venta ventas[100];
 int numProductos=0;
+int numVentas=0;
 
 void registrarProducto() {
     cout << "\n=== REGISTRAR PRODUCTO ===" << endl;
@@ -132,6 +134,43 @@ void eliminarProducto() {
 }
 
 
+int contadorVentas=1;
+void registrarVenta() {
+    string nombreProducto;
+    float precioProducto = 0;
+    
+    cout << "\n=== REGISTRAR VENTA ===" << endl;
+    cout << "Nombre del producto vendido: ";
+    cin.ignore();
+	getline(cin, nombreProducto);
+	
+	bool productoEncontrado = false;
+    for (int i = 0; i < numProductos; i++) {
+        if (productos[i].nombre == nombreProducto) {
+            precioProducto = productos[i].precio;
+            productoEncontrado = true;
+            break;
+        }
+    }
+    
+    if (productoEncontrado = false) {
+        cout << "Producto no encontrado en el inventario." << endl;
+    }
+    
+    ventas[numVentas].idVenta = contadorVentas++;
+    ventas[numVentas].producto = nombreProducto;
+    
+    cout << "Cantidad vendida: ";
+    cin >> ventas[numVentas].cantidad;
+    
+    ventas[numVentas].precioTotal = precioProducto * ventas[numVentas].cantidad;
+    
+    numVentas++;
+    cout << "Venta registrada exitosamente!" << endl;
+    cout << "Total de la venta: " << ventas[numVentas-1].precioTotal << endl;
+}
+
+
 int main() {
 	int salir = 0;
     do {
@@ -166,7 +205,7 @@ int main() {
                 eliminarProducto();
                 break;
             case 'F':
-                
+                registrarVenta();
                 break;
             case 'G':
                
