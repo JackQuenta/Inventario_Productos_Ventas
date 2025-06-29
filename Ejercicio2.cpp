@@ -170,6 +170,16 @@ void registrarVenta() {
     cout << "Total de la venta: " << ventas[numVentas-1].precioTotal << endl;
 }
 
+void listarVentas() {
+    cout << "\n=== LISTADO DE VENTAS ===" << endl;
+    for (int i = 0; i < numVentas; i++) {
+        cout << "ID: " << ventas[i].idVenta << endl;
+		cout << "PRODUCTO: " << ventas[i].producto << endl;
+		cout << "CANTIDAD: " << ventas[i].cantidad << endl;
+		cout << "TOTAL: " << ventas[i].precioTotal << endl;
+    }
+}
+
 
 int main() {
 	int salir = 0;
@@ -208,7 +218,7 @@ int main() {
                 registrarVenta();
                 break;
             case 'G':
-               
+                listarVentas();
                 break;  
 			case 'H':
                 ;
