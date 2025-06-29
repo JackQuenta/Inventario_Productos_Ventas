@@ -180,6 +180,16 @@ void listarVentas() {
     }
 }
 
+void totalVentas() {    
+    float totalGeneral = 0;
+    for (int i = 0; i < numVentas; i++) {
+        totalGeneral += ventas[i].precioTotal;
+    }
+    cout << "\n=== TOTAL DE VENTAS ===" << endl;
+    cout << "Total de ventas realizadas: " << totalGeneral << endl;
+    cout << "Numero de ventas: " << numVentas << endl;
+}
+
 
 int main() {
 	int salir = 0;
@@ -221,7 +231,7 @@ int main() {
                 listarVentas();
                 break;  
 			case 'H':
-                ;
+                totalVentas();
                 break; 
             case 'S':
                 salir = 1;
