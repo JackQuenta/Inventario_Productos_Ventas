@@ -106,6 +106,32 @@ void actualizarProducto() {
 	}
 }
 
+void eliminarProducto() {
+    string nombreBuscar;
+    cout << "\n=== ELIMINAR PRODUCTO ===" << endl;
+    cout << "Ingrese el nombre del producto a eliminar: ";
+    cin.ignore();
+	getline(cin, nombreBuscar);
+	
+    bool encontrado = false;
+    for (int i = 0; i < numProductos; i++) {
+        if (productos[i].nombre == nombreBuscar) {
+            for (int j = i; j < numProductos - 1; j++) {
+                productos[j] = productos[j + 1];
+            }
+            numProductos--;
+            encontrado = true;
+            break;
+        }
+    }
+   if (encontrado == true) {
+    	cout << "Contacto Eliminado" << endl;
+	} else {
+    	cout << "Contacto no encontrado." << endl;
+	}
+}
+
+
 int main() {
 	int salir = 0;
     do {
@@ -137,7 +163,7 @@ int main() {
                 actualizarProducto();
                 break;
             case 'E':
-               
+                eliminarProducto();
                 break;
             case 'F':
                 
