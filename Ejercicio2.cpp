@@ -46,7 +46,14 @@ void registrarProducto() {
     cout << "Producto registrado exitosamente!" << endl;
 }
 
-
+void listarProductos() {
+    cout << "\n=== LISTADO DE PRODUCTOS ===" << endl;
+    for (int i = 0; i < numProductos; i++) {
+        cout << "\nProducto " << (i+1) << ":" << endl;
+        cout << "Nombre: " << productos[i].nombre << endl;
+        cout << "Precio: " << productos[i].precio << endl;
+	}
+}
 
 int main() {
 	int salir = 0;
@@ -70,7 +77,7 @@ int main() {
                 registrarProducto();
                 break;
             case 'B':
-                
+                listarProductos();
                 break;
             case 'C':
                 
