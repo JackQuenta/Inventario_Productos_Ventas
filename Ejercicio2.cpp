@@ -17,8 +17,10 @@ Requisitos:
 */
 #include <iostream>
 #include <string>
+using namespace std;
+
 struct Producto {
-    string nombre;
+	string nombre;
     float precio;
 };
 
@@ -28,6 +30,23 @@ struct Venta {
     int cantidad;
     float precioTotal;
 };
+
+Producto productos[100];
+int numProductos=0;
+
+void registrarProducto() {
+    cout << "\n=== REGISTRAR PRODUCTO ===" << endl;
+    cout << "Nombre del producto: ";
+    cin.ignore();
+    getline(cin, productos[numProductos].nombre);
+    cout << "Precio del producto: ";
+    cin >> productos[numProductos].precio;
+    
+    numProductos++;
+    cout << "Producto registrado exitosamente!" << endl;
+}
+
+
 
 int main() {
 	int salir = 0;
@@ -48,28 +67,28 @@ int main() {
         
         switch(op) {
             case 'A':
-                agregarContacto();
+                registrarProducto();
                 break;
             case 'B':
-                agregarContacto();
+                
                 break;
             case 'C':
-                agregarContacto();
+                
                 break;
             case 'D':
-                agregarContacto();
+                
                 break;
             case 'E':
-                agregarContacto();
+               
                 break;
             case 'F':
-                agregarContacto();
+                
                 break;
             case 'G':
-                eliminarContacto();
+               
                 break;  
 			case 'H':
-                mostrarContactos();
+                ;
                 break; 
             case 'S':
                 salir = 1;
