@@ -55,6 +55,29 @@ void listarProductos() {
 	}
 }
 
+void buscarProducto() {
+    string nombreBuscar;
+    cout << "\n=== BUSCAR PRODUCTO ===" << endl;
+    cout << "Ingrese el nombre del producto a buscar: ";
+    cin.ignore();
+	getline(cin, nombreBuscar);
+	
+    bool encontrado = false;
+    for (int i = 0; i < numProductos; i++) {
+        if (productos[i].nombre == nombreBuscar) {
+            cout << "\nProducto encontrado:" << endl;
+            cout << "Nombre: " << productos[i].nombre << endl;
+            cout << "Precio: " << productos[i].precio << endl;
+            encontrado = true;
+            break;
+        }
+    }
+    if (encontrado == false) {
+        cout << "Producto no encontrado." << endl;
+    }
+}
+
+
 int main() {
 	int salir = 0;
     do {
@@ -80,7 +103,7 @@ int main() {
                 listarProductos();
                 break;
             case 'C':
-                
+                buscarProducto();
                 break;
             case 'D':
                 
